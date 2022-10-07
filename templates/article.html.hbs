@@ -23,27 +23,8 @@
     </head>
     <body>
         <div class="menu">
-            <a href="index.html" class="header-like">Sato News Network</a>
-
-            <span>Newspapers</span>
-            <div class="navbar">
-                <a href="wyvern">The Wyvern Weekly</a>
-            </div>
-
-            <span>Resources</span>
-            <div class="navbar">
-                <a href="submit">Submissions</a>
-                <a href="about">Club Info</a>
-            </div>
-
-            <span>Socials</span>
-            <div class="navbar">
-                <a href="https://www.instagram.com/thewyvernweeklysnn/">Instagram</a>
-                <a href="https://discord.com/invite/vgEH7bC8ju">Discord</a>
-            </div>
-
-            <span>Promoted Message</span>
-            <div style="margin:8px;"><img src="/promo.jpg" class="promo"/></div>
+            <a href="/" class="home-link">Sato News Network</a>
+            <a href="/newspaper/{{paper_id}}"><img src="{{logo}}"/></a>
         </div>
 
         <div class="content">
@@ -54,7 +35,7 @@
                 <h1>{{title}}</h1>
                 <div class="banner-info">
                     {{#if author}}
-                    <p class="author-issue">By <em>{{author}}</em> • {{paper}} No. {{issue}}</p>
+                    <p class="author-issue">By <em>{{author}}</em> • <a href="/newspaper/{{paper_id}}/{{issue}}">{{paper}} No. {{issue}}</a></p>
                     <p id="article-date" class="date">Unknown Publication Date</p>
                     {{/if}}
                 </div>
@@ -69,7 +50,6 @@
 
         <div style="display: none" id="quill-dummy"></div>
 
-        <!-- article_json should come properly sanitized -->
         {{#if article_json}}
         <script>
             var articleContent = JSON.parse('{{{article_json}}}');

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+
+        <title>Edit {{#if article}}Article{{else}}{{#if newspaper}}Newspaper{{/if}}{{/if}} | Sato News Network</title>
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+        <link href="/edit.css" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@700&family=Mukta&display=swap" rel="stylesheet">
+
+        {{#if article}}<link href="https://cdn.quilljs.com/1.2.6/quill.snow.css" rel="stylesheet">{{/if}}
+    </head>
+    <body>
+        <div class="content">
+            <h1 class="menu-title">
+                {{#if article}}
+                    {{#if edit}}Edit Article{{else}}Create an Article{{/if}}
+                {{else}}{{#if newspaper}}
+                    {{#if edit}}Edit Newspaper{{else}}Create a Newspaper{{/if}}
+                {{/if}}{{/if}}
+            </h1>
+
+            {{#if article}}
+                <h2>Title: <input id="article-title" type="text" value="{{article.title}}"></h2>
+                <h2>Author: <input id="article-author" type="text" value="{{article.author}}"></h2>
+                <h2>Newspaper: <select id="article-paper">
+                    {{#each article.available_papers}}
+                        <option value="{{this.id}}">{{this.name}}</option>
+                    {{/each}}
+                </select></h2>
+                <h2>Issue #: <input id="article-issue" type="number" value="{{article.issue}}"></h2>
+                <h2>Background Image (URL): <input id="article-image" type="url" value="{{article.image}}"></h2>
+                <h2>Newspaper Preview Style #: <input id="article-style" type="number" value="{{article.style}}"></h2>
+                <p>0 = Full width image, title, and description (For headlines)<br/>1 = Side-by-side image, title, and description (For major articles and longer reads)<br/>2 = Title and description only (For minor editorials and shorter reads)</p>
+                <h2>Column: <input id="article-column" type="number" value="{{article.column}}"></h2>
+                <p>0 = Top headline, 1 = Left column, 2 = Right column</p>
+                <h2>Sort Number: <input id="article-sortnum" type="number" value="{{article.sortnum}}"></h2>
+                <p>A number to order this article on the newspaper page - articles with larger numbers come after those with smaller numbers</p>
+                <h2>Content:</h2>
+                <div id="article-body">
+                    <p>Type your article here</p>
+                </div>
+                {{#if edit}}{{else}}
+                    <h3>Unique URL: <input id="article-url" type="text"></h3>
+                    <p>Example - for an article titled "The News", your unique URL might be "the-news".<br/>It might help to also put the newspaper's name in the URL, to avoid confusion (for a newspaper named "The Daily", this article's URL could be "the-daily-the-news")<br/>Each article must have a completely unique URL, no two can have the same one - even if they are in different newspapers.</p>
+                {{/if}}
+            {{else}}{{#if newspaper}}
+                <h2>Newspaper Name: <input id="paper-name" type="text" value="{{newspaper.name}}"></h2>
+                <h2>Logo Image (URL): <input id="paper-logo" type="url" value="{{newspaper.logo}}"></h2>
+                <h2>Featured Issue #: <input id="paper-featured-issue" type="number" value="{{newspaper.featured_issue}}"></h2>
+                {{#if edit}}{{else}}
+                    <h3>Unique URL: <input id="paper-url" type="text"></h3>
+                    <p>Example - for a newspaper titled "The Daily", your unique URL might be "the-daily".<br/>Each newspaper must have a completely unique URL, no two can have the same one.</p>
+                {{/if}}
+            {{/if}}{{/if}}
+
+            <h3>Publishing Code: <input id="veri-code" type="text"></h3>
+            <button onclick="onSubmit()">{{#if article}}
+                {{#if edit}}Save and REPLACE article{{else}}Publish Article{{/if}}
+            {{else}}{{#if newspaper}}
+                {{#if edit}}Save and REPLACE Newspaper{{else}}Publish Newspaper{{/if}}
+            {{/if}}{{/if}}</button>
+            <p id="pub-status"></p>
+        </div>
+
+        <script>
+            function submissionId() {
+                return {{#if article}}{{#if edit}} "{{article.id}}";{{else}} document.getElementById("article-url").value;{{/if}}{{else}}{{#if newspaper}}{{#if edit}} "{{newspaper.id}}";{{else}} document.getElementById("paper-url").value;{{/if}}{{/if}}{{/if}}
+            }
+        </script>
+        {{#if article}}
+            <script src="https://cdn.quilljs.com/1.2.6/quill.min.js"></script>
+            <script src="/edit_article.js"></script>
+            <script>
+            {{#if article.paper}}
+                document.getElementById("article-paper").value = "{{article.paper}}"
+            {{/if}}
+            {{#if edit}}
+                article.setContents(JSON.parse('{{{article.article_json}}}'));
+            {{/if}}
+            </script>
+        {{else}}{{#if newspaper}}
+            <script src="/edit_newspaper.js"></script>
+        {{/if}}{{/if}}
+    </body>
+</html>

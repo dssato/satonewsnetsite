@@ -11,6 +11,12 @@
     text-align: center;
 }
 
+h1 {
+    border-style: solid;
+    border-width: 0px 0px 1px 0px;
+    border-color: white;
+}
+
 h1, h2, h3, h4 {
     font-family: 'Archivo Narrow', sans-serif;
     margin-left: 15px;
@@ -19,6 +25,8 @@ h1, h2, h3, h4 {
     margin-bottom: 11px;
     color: white;
 }
+
+
 
 p, blockquote, ol, ul, li {
     font-family: 'Mukta', sans-serif;

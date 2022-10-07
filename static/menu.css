@@ -1,23 +1,16 @@
-.home-link {
+.header-like {
     font-family: 'Archivo Narrow', sans-serif;
-    margin-left: 20%;
-    margin-right: 20%;
-    margin-top: 5px;
-    margin-bottom: 6px;
+    margin-left: 15px;
+    margin-right: 15px;
+    margin-top: 21px;
+    margin-bottom: 11px;
     border-style: solid;
     border-width: 0px 0px 1px 0px;
     color: white;
     border-color: white;
     display: block;
-    font-size: 18px;
+    font-size: 30px;
     text-decoration: none;
-}
-
-@media (max-width: 800px) {
-    .home-link {
-        margin-left: 20px;
-        margin-right: 20px;
-    }
 }
 
 h1 {
@@ -57,27 +50,29 @@ p, blockquote, ol, ul, li {
 
 .banner {
     background-color: #1F2A3E;
-    padding-top: 75px;
+    top: 0;
     width: 100%;
 }
 
 .content {
+    margin-left: 316px;
+    margin-right: 0px;
     height: 100%;
     top: 0;
 }
 
 .banner h1 {
     margin: 8px;
-    margin-left: 24%;
-    margin-right: 24%;
+    margin-left: 20%;
+    margin-right: 20%;
     text-align: center;
     font-size: 40px;
     border-color: white;
 }
 
 .banner-info {
-    margin-left: 25%;
-    margin-right: 25%;
+    margin-left: 20%;
+    margin-right: 20%;
     padding-bottom: 10px;
 }
 
@@ -86,11 +81,6 @@ p, blockquote, ol, ul, li {
     font-family: 'Archivo Narrow', sans-serif;
     margin: 1px;
     color: #bcbcbc;
-}
-
-.author-issue a {
-    color: #bcbcbc;
-    text-decoration: none;
 }
 
 .author-issue em {
@@ -112,38 +102,18 @@ p, blockquote, ol, ul, li {
     background-position: right 50% top 180%;
     background-repeat: no-repeat;
     background-size: cover;
+    margin-top: 30px;
 }
 
 .article {
-    margin-left: 25%;
-    margin-right: 25%;
+    margin-left: 20%;
+    margin-right: 20%;
     padding: 8px;
 }
 
-.article img {
-    max-width: 100%;
-}
-
-@media (max-width: 800px) {
-    .article {
-        margin-left: 0;
-        margin-right: 0;
-    }
-
-    .banner h1 {
-        margin-left: 10px;
-        margin-right: 10px;
-    }
-
-    .banner-info {
-        margin-left: 15px;
-        margin-right: 15px;
-    }
-}
-
 .menu {
-    width: 100%;
-    height: 83px;
+    height: 100%;
+    width: 300px;
     position: fixed;
     z-index: 1;
     top: 0;
@@ -151,12 +121,52 @@ p, blockquote, ol, ul, li {
 
     background-color: #aa1100;
     border-style: solid;
-    border-width: 0px 0px 1px 0px;
+    border-width: 0px 1px 0px 0px;
     border-color: #660800;
     text-align: center;
-    padding: 4px;
+    padding: 8px;
 }
 
-.menu img {
-    max-height: 45px;
+.menu span {
+    display: block;
+    text-align: left;
+    font-family: 'Archivo Narrow', sans-serif;
+    color: #ffffff;
+    margin-top: 15px;
+    margin-bottom: 5px;
+    margin-left: 15px;
+    font-size: 20px;
+}
+
+.navbar {
+    margin: 8px;
+    background-color: #881100;
+    border-style: solid;
+    border-radius: 3px;
+    border-width: 1px;
+    border-color: #660800;
+}
+
+.promo {
+    max-width: 100%;
+    background-color: #881100;
+    border-style: solid;
+    border-radius: 5px;
+    border-width: 1px;
+    border-color: #660800;
+}
+
+.navbar a {
+    font-family: 'Mukta', sans-serif;
+    border-radius: 5px;
+    text-align: left;
+    padding: 3px 3px 3px 9px;
+    text-decoration: none;
+    font-size: 17px;
+    color: #ffffff;
+    display: block;
+}
+
+.navbar a:hover {
+    background-color: #661100;
 }

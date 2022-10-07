@@ -8,4 +8,5 @@ publish = false
 rocket = { version = "0.5.0-rc.2", features = ["json"] }
 rocket_dyn_templates = { version = "0.1.0-rc.2", features = ["handlebars"] }
 rusqlite = { version = "0.28.0", features = ["bundled"] }
-
+webhook = { version = "2.1.1", features = ["models"] }
+rand = { version = "0.8.5" }

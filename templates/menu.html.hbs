@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+
+        <title>{{title}} | Sato News Network</title>
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+        <link href="/article.css" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@700&family=Mukta&display=swap" rel="stylesheet">
+
+        {{#if image}}
+            <style>
+                .banner-image {
+                    background-image: url("{{image}}");
+                }
+                </style>
+        {{/if}}
+    </head>
+    <body>
+        <div class="menu">
+            <a href="/" class="header-like">Sato News Network</a>
+
+            <span>Resources</span>
+            <div class="navbar">
+                <a href="/submit">Submissions</a>
+                <a href="/about">Club Info</a>
+            </div>
+
+            <span>Socials</span>
+            <div class="navbar">
+                <a href="https://www.instagram.com/thewyvernweeklysnn/">Instagram</a>
+                <a href="https://discord.com/invite/vgEH7bC8ju">Discord</a>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="banner">
+                <div class="banner-image"></div>
+            </div>
+        </div>
+    </body>
+</html>

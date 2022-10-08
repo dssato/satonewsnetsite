@@ -194,23 +194,37 @@ pub fn get_paper_select_contexts(state: &State<BackendState>) -> Vec<HashMap<&st
     vec
 }
 
+pub fn row_to_paper<E>(row: &Row) -> Result<Paper, E> where E: Error {
+    Ok(Paper {
+        id: row.get(0).unwrap(),
+        name: row.get(1).unwrap(),
+        featured_issue: row.get(2).unwrap(),
+        logo: row.get(3).unwrap()
+    })
+}
+
 pub fn get_paper(state: &State<BackendState>, paper_id: &str) -> Option<Paper> {
     let db = state.db.lock().unwrap();
     let mut st = db.prepare("SELECT * FROM papers WHERE id = :id").unwrap();
 
-    let papers = st.query_map(&[(":id", paper_id)], |row| {
-        Ok(Paper {
-            id: row.get(0).unwrap(),
-            name: row.get(1).unwrap(),
-            featured_issue: row.get(2).unwrap(),
-            logo: row.get(3).unwrap()
-        })
-    }).unwrap();
+    let papers = st.query_map(&[(":id", paper_id)], row_to_paper).unwrap();
 
     for paper in papers {
         return Some(paper.ok()?);
     }
     None
+}
+
+pub fn get_papers(state: &State<BackendState>) -> Vec<Paper> {
+    let db = state.db.lock().unwrap();
+    let mut st = db.prepare("SELECT * FROM papers").unwrap();
+
+    let papers = st.query_map([], row_to_paper).unwrap();
+    let mut vec = Vec::new();
+    for paper in papers {
+        vec.push(paper.ok().unwrap());
+    }
+    vec
 }
 
 pub fn put_paper(state: &State<BackendState>, paper: &Paper) {

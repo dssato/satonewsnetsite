@@ -29,7 +29,12 @@
             </div>
             <script>
             document.getElementById("issue").addEventListener("change", (e) => {
-                window.location.href = "/newspaper/{{id}}/" + e.target.value;
+                let issue = parseInt(e.target.value);
+                if (issue < 1) {
+                    issue = 1;
+                }
+                window.location.href = "/newspaper/{{id}}/" + issue;
+
                 e.target.value = {{issue}};
             });
             </script>
@@ -37,7 +42,7 @@
             <div class="paper">
                 <div class="headline">
                     {{#each headlines}}
-                        <a href="/read/{{this.id}}" style="text-decoration: none"><div class="article-headline article-style--{{this.style}}">
+                        <a href="/read/{{this.id}}" style="text-decoration: none"><div class="article-headline article-preview article-style--{{this.style}}">
                             <div class="article-image--{{this.style}}" style="background-image: url('{{this.image}}')"></div>
                             <div class="article-info--{{this.style}}">
                                 <h2>{{this.title}}</h2>
@@ -50,10 +55,10 @@
                         <script>document.getElementById("desc_{{this.id}}").innerHTML = getPreviewText('{{{this.article_json}}}');</script>
                     {{/each}}
                 </div>
-                <div>
+                <div style="padding-bottom: 50px">
                     <div class="left">
                         {{#each left}}
-                            <a href="/read/{{this.id}}" style="text-decoration: none"><div class="article-left article-style--{{this.style}}">
+                            <a href="/read/{{this.id}}" style="text-decoration: none"><div class="article-left article-preview article-style--{{this.style}}">
                                 <div class="article-image--{{this.style}}" style="background-image: url('{{this.image}}')"></div>
                                 <div class="article-info--{{this.style}}">
                                     <h2>{{this.title}}</h2>
@@ -68,7 +73,7 @@
                     </div>
                     <div class="right">
                         {{#each right}}
-                            <a href="/read/{{this.id}}" style="text-decoration: none"><div class="article-right article-style--{{this.style}}">
+                            <a href="/read/{{this.id}}" style="text-decoration: none"><div class="article-right article-preview article-style--{{this.style}}">
                                 <div class="article-image--{{this.style}}" style="background-image: url('{{this.image}}')"></div>
                                 <div class="article-info--{{this.style}}">
                                     <h2>{{this.title}}</h2>
